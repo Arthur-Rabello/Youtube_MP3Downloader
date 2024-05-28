@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    networks:
+      - mp3downloader_network
+
+  web:
+    build: .
+    command: bundle exec rails server -b '0.0.0.0'
+    entrypoint: ["entrypoint.sh"]
+    volumes:
+      - ".:/app"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_NAME: ${DATABASE_NAME}
+      SMTP_ADDRESS: ${SMTP_ADDRESS}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_DOMAIN: ${SMTP_DOMAIN}
+      SMTP_USER_NAME: ${SMTP_USER_NAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_AUTHENTICATION: ${SMTP_AUTHENTICATION}
+      SMTP_ENABLE_STARTTLS_AUTO: ${SMTP_ENABLE_STARTTLS_AUTO}
+    networks:
+      - mp3downloader_network
+
+networks:
+  mp3downloader_network:
+    driver: bridge
