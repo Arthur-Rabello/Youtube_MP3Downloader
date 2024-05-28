@@ -28,7 +28,7 @@ sudo docker-compose up --build
 
 Conecte-se ao endereço local fornecido pelo Docker, normalmente `http://localhost:3000`, a menos que você tenha configurado uma porta diferente.
 
-![Acesso ao sistema](https://github.com/Arthur-Rabello/Youtube_MP3Downloader/assets/146759263/c362d408-0382-49f2-99c1-ee745d8661d4)
+![image](https://github.com/Arthur-Rabello/Youtube_MP3Downloader/assets/146759263/0a5a7406-e214-4b51-aec2-12127979ab1f)
 
 #### 3. Submetendo uma URL de Música do YouTube
 
